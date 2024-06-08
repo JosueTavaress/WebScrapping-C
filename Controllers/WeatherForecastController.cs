@@ -28,12 +28,21 @@ public class WeatherForecastController : ControllerBase
         List<Item> items = new List<Item>();
         bool hasNextPage = true;
 
+        string BaseUrl = "https://www.tbca.net.br/base-dados/composicao_estatistica.php";
+        string Query = $"?pagina={0}&atuald=1";
+
+
+        HtmlDocument LoadHtmlDocument(int page)
+        {
+            var web = new HtmlWeb();
+            string url = string.Format(BaseUrl + Query, page);
+            return web.Load(url);
+        }
 
         while (hasNextPage)
         {
-            var web = new HtmlWeb();
-            HtmlDocument document = web.Load($"https://www.tbca.net.br/base-dados/composicao_estatistica.php?pagina={page}&atuald=1");
-            var nodesList = document.DocumentNode.SelectNodes("//table/tbody/tr");
+            HtmlDocument htmlDocument = LoadHtmlDocument(page);
+            var nodesList = htmlDocument.DocumentNode.SelectNodes("//table/tbody/tr");
 
 
             if (nodesList != null)
