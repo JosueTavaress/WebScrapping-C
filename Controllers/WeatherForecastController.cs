@@ -62,11 +62,8 @@ public class WeatherForecastController : ControllerBase
 
             if (nodesList != null)
             {
-                foreach(var node in nodesList)
-                {
-                   var item = InstanceItem(node);
-                    items.Add(item);
-                }
+                var newItems = nodesList.Select(InstanceItem).ToList();
+                items.AddRange(newItems);
                 page++;
             }
             else {
