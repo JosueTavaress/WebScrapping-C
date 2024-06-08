@@ -28,15 +28,31 @@ public class WeatherForecastController : ControllerBase
         List<Item> items = new List<Item>();
         bool hasNextPage = true;
 
-        string BaseUrl = "https://www.tbca.net.br/base-dados/composicao_estatistica.php";
-        string Query = $"?pagina={0}&atuald=1";
-
-
         HtmlDocument LoadHtmlDocument(int page)
         {
+            string BaseUrl = "https://www.tbca.net.br/base-dados/composicao_estatistica.php";
+            string Query = "?pagina={0}&atuald=1";
             var web = new HtmlWeb();
             string url = string.Format(BaseUrl + Query, page);
             return web.Load(url);
+        }
+
+        string HtmlDecoded(string html)
+        {
+            return HttpUtility.HtmlDecode(html);
+        }
+
+        Item InstanceItem(HtmlNode node)
+        {
+            var item = new Item();
+            var child = node.ChildNodes;
+            item.Code = HtmlDecoded(child[0].InnerText);
+            item.Name = HtmlDecoded(child[1].InnerText);
+            item.ScientificName = HtmlDecoded(child[2].InnerText);
+            item.Group = HtmlDecoded(child[3].InnerText);
+            item.Brand = HtmlDecoded(child[4].InnerText);
+            return item;
+
         }
 
         while (hasNextPage)
@@ -44,28 +60,12 @@ public class WeatherForecastController : ControllerBase
             HtmlDocument htmlDocument = LoadHtmlDocument(page);
             var nodesList = htmlDocument.DocumentNode.SelectNodes("//table/tbody/tr");
 
-
             if (nodesList != null)
             {
-
                 foreach(var node in nodesList)
                 {
-                    List<string> arr = new List<string>();
-                    foreach (var item in node.ChildNodes)
-                    {
-                        string encodedData = item.InnerText;
-                        string decodedData = HttpUtility.HtmlDecode(encodedData);
-                        arr.Add(decodedData);
-                    }
-                    var nodes = arr.ToArray();
-                    var objItem = new Item();
-                    objItem.Code = nodes[0];
-                    objItem.Name = nodes[1];
-                    objItem.ScientificName = nodes[2];
-                    objItem.Group = nodes[3];
-                    objItem.Brand = nodes[4];
-                    items.Add(objItem);
-
+                   var item = InstanceItem(node);
+                    items.Add(item);
                 }
                 page++;
             }
@@ -73,7 +73,6 @@ public class WeatherForecastController : ControllerBase
                 hasNextPage = false;
             }
         }
-
        
         foreach (var item in items)
         {
