@@ -1,16 +1,17 @@
 ﻿using System.Web;
 using HtmlAgilityPack;
 
-enum EnergyKJ
+enum EnumProperties
 {
-    Units = 1,
-    ValuePer = 2,
-    Standard = 3,
-    Minimum = 4,
-    Maximum = 5,
-    NumberOfDataUsed = 6,
-    References = 7,
-    DataType = 8,
+    Component,
+    Units,
+    ValuePer,
+    Standard,
+    Minimum,
+    Maximum,
+    NumberOfDataUsed,
+    References,
+    DataType,
 }
 
 namespace WebScrapping_C
@@ -42,71 +43,74 @@ namespace WebScrapping_C
             return item;
         }
 
-        private Item AddDatails(Item item)
+        private Item AddDetails(Item item)
         {
-            var url = "https://www.tbca.net.br/base-dados/int_composicao_estatistica.php";
+            var BaseUrl = "https://www.tbca.net.br/base-dados/int_composicao_estatistica.php";
             var query = "?cod_produto={0}";
             var code = item.Code;
-            HtmlDocument htmlDocument = LoadHtmlDocument(code, url, query);
-            var nodesList = htmlDocument.DocumentNode.SelectNodes("//table/tbody/tr/td");
+            HtmlDocument htmlDocument = LoadHtmlDocument(code, BaseUrl, query);
+            var rows = htmlDocument.DocumentNode.SelectNodes("//table/tbody/tr");
 
+            const int componentIndx = (int)EnumProperties.Component;
+            const int UnitsIndx = (int)EnumProperties.Units;
+            const int ValuePerIndx = (int)EnumProperties.ValuePer;
+            const int StandardIndx = (int)EnumProperties.Standard;
+            const int MinimumIndx = (int)EnumProperties.Minimum;
+            const int MaximumIndx = (int)EnumProperties.Maximum;
+            const int NumberOfDataIndx = (int)EnumProperties.NumberOfDataUsed;
+            const int ReferenceIndx = (int)EnumProperties.References;
+            const int DataTypeIndx = (int)EnumProperties.DataType;
 
-            if (nodesList != null)
+            foreach (var row in rows)
             {
-                var indxUnits = (int)EnergyKJ.Units;
-                item.Details.EnergyKJ.Units = HtmlDecoded(nodesList[indxUnits].InnerText);
+                var doc = new HtmlDocument();
+                doc.LoadHtml(row.InnerHtml);
+                var td = doc.DocumentNode.SelectNodes("/td");
 
-                var indxValuePer = (int)EnergyKJ.ValuePer;
-                item.Details.EnergyKJ.ValuePer100G = HtmlDecoded(nodesList[indxValuePer].InnerText);
-
-                var indxStandard = (int)EnergyKJ.Standard;
-                item.Details.EnergyKJ.StandardDeviation = HtmlDecoded(nodesList[indxStandard].InnerText);
-
-                var indxMinimum = (int)EnergyKJ.Minimum;
-                item.Details.EnergyKJ.MinimumValue = HtmlDecoded(nodesList[indxMinimum].InnerText);
-
-                var indxMaximum = (int)EnergyKJ.Maximum;
-                item.Details.EnergyKJ.MaximumValue = HtmlDecoded(nodesList[indxMaximum].InnerText);
-
-                var indxNumberOfDataUsed = (int)EnergyKJ.NumberOfDataUsed;
-                item.Details.EnergyKJ.NumberOfDataUsed = HtmlDecoded(nodesList[indxNumberOfDataUsed].InnerText);
-
-                var indxReferences = (int)EnergyKJ.References;
-                item.Details.EnergyKJ.References = HtmlDecoded(nodesList[indxReferences].InnerText);
-
-                var indxType = (int)EnergyKJ.DataType;
-                item.Details.EnergyKJ.DataType = HtmlDecoded(nodesList[indxType].InnerText);
+                var properties = new Properties
+                {
+                    Component = HtmlDecoded(td[componentIndx].InnerText),
+                    Units = HtmlDecoded(td[UnitsIndx].InnerText),
+                    ValuePer100G = HtmlDecoded(td[ValuePerIndx].InnerText),
+                    StandardDeviation = HtmlDecoded(td[StandardIndx].InnerText),
+                    MinimumValue = HtmlDecoded(td[MinimumIndx].InnerText),
+                    MaximumValue = HtmlDecoded(td[MaximumIndx].InnerText),
+                    NumberOfDataUsed = HtmlDecoded(td[NumberOfDataIndx].InnerText),
+                    References = HtmlDecoded(td[ReferenceIndx].InnerText),
+                    DataType = HtmlDecoded(td[DataTypeIndx].InnerText)
+                };
+                item.Details.Add(properties);
             }
 
             return item;
         }
 
-        // https://www.tbca.net.br/base-dados/int_composicao_estatistica.php ?cod_produto=BRC0001C //details
         public List<Item> Execute()
         {
             int page = 1;
             List<Item> items = new List<Item>();
-            bool hasNextPage = true;
 
-            while (hasNextPage)
+            while (true)
             {
-                var url = "https://www.tbca.net.br/base-dados/composicao_estatistica.php";
+                Console.WriteLine(page);
+                var BaseUrl = "https://www.tbca.net.br/base-dados/composicao_estatistica.php";
                 var query = "?pagina={0}&atuald=1";
-                HtmlDocument htmlDocument = LoadHtmlDocument(page.ToString(), url, query);
+                HtmlDocument htmlDocument = LoadHtmlDocument(page.ToString(), BaseUrl, query);
                 var nodesList = htmlDocument.DocumentNode.SelectNodes("//table/tbody/tr");
 
                 if (nodesList != null)
                 {
                     var newItems = nodesList.Select(InstanceItem).ToList();
 
-                    newItems.ForEach((x) => { AddDatails(x); });
+                    foreach (var item in newItems) {
+                        AddDetails(item);
+                    }
                     items.AddRange(newItems);
                     page++;
                 }
                 else
                 {
-
-                    hasNextPage = false;
+                    break;
                 }
             }
             return items;
