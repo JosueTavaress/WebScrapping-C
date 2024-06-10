@@ -19,11 +19,11 @@ namespace WebScrapping_C
     public class Scrapping
     {
 
-        private HtmlDocument LoadHtmlDocument(string page, string url, string query)
+        private async Task<HtmlDocument> LoadHtmlDocumentAsync(string page, string url, string query)
         {
             var web = new HtmlWeb();
             string urlFormat = string.Format(url + query, page);
-            return web.Load(urlFormat);
+            return await web.LoadFromWebAsync(urlFormat);
         }
 
         private string HtmlDecoded(string html)
@@ -43,12 +43,12 @@ namespace WebScrapping_C
             return item;
         }
 
-        private Item AddDetails(Item item)
+        private async Task<Item> AddDetails(Item item)
         {
             var BaseUrl = "https://www.tbca.net.br/base-dados/int_composicao_estatistica.php";
             var query = "?cod_produto={0}";
             var code = item.Code;
-            HtmlDocument htmlDocument = LoadHtmlDocument(code, BaseUrl, query);
+            HtmlDocument htmlDocument = await LoadHtmlDocumentAsync(code, BaseUrl, query);
             var rows = htmlDocument.DocumentNode.SelectNodes("//table/tbody/tr");
 
             const int componentIndx = (int)EnumProperties.Component;
@@ -85,7 +85,7 @@ namespace WebScrapping_C
             return item;
         }
 
-        public List<Item> Execute()
+        public async Task<List<Item>> ExecuteAsync()
         {
             int page = 1;
             List<Item> items = new List<Item>();
@@ -95,7 +95,7 @@ namespace WebScrapping_C
                 Console.WriteLine(page);
                 var BaseUrl = "https://www.tbca.net.br/base-dados/composicao_estatistica.php";
                 var query = "?pagina={0}&atuald=1";
-                HtmlDocument htmlDocument = LoadHtmlDocument(page.ToString(), BaseUrl, query);
+                HtmlDocument htmlDocument = await LoadHtmlDocumentAsync(page.ToString(), BaseUrl, query);
                 var nodesList = htmlDocument.DocumentNode.SelectNodes("//table/tbody/tr");
 
                 if (nodesList != null)
@@ -103,7 +103,7 @@ namespace WebScrapping_C
                     var newItems = nodesList.Select(InstanceItem).ToList();
 
                     foreach (var item in newItems) {
-                        AddDetails(item);
+                       await AddDetails(item);
                     }
                     items.AddRange(newItems);
                     page++;

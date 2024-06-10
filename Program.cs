@@ -1,3 +1,5 @@
+using WebScrapping_C;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,4 +24,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+var scrapingTask = Task.Run(async () =>
+{
+    var scrapping = new Scrapping();
+    await scrapping.ExecuteAsync();
+});
+
 app.Run();
+
+await scrapingTask;
