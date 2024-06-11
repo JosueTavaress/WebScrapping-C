@@ -8,12 +8,6 @@ namespace WebScrapping_C.Controllers;
 [Route("[controller]")]
 public class FoodsController : ControllerBase
 {
-    private readonly ILogger<FoodsController> _logger;
-    public FoodsController(ILogger<FoodsController> logger)
-    {
-        _logger = logger;
-    }
-
     [HttpGet("skip/{skip:int}/take/{take:int}")]
     public async Task<IActionResult> GetAsync(
         [FromServices]FoodsContex contex,
@@ -26,6 +20,29 @@ public class FoodsController : ControllerBase
             .AsNoTracking()
             .Skip(skip)
             .Take(take)
+            .ToListAsync();
+
+        return Ok(items);
+    }
+
+    [HttpGet("filter", Name = "FilterFoodsByName")]
+    public async Task<IActionResult> FilterByNameAsync(
+        [FromServices] FoodsContex contex,
+        [FromQuery] string name,
+        [FromQuery] int skip = 0,
+        [FromQuery] int take = 25)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            return BadRequest("The 'name' query parameter is required.");
+        }
+
+        var items = await contex.Items
+            .Include(i => i.Details)
+            .Where(i => i.Name.Contains(name))
+            .Skip(skip)
+            .Take(take)
+            .AsNoTracking()
             .ToListAsync();
 
         return Ok(items);
