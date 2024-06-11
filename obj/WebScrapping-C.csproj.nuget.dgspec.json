@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\WebScrapping-C.csproj": {}
+    "C:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\WebScrapping-C.csproj": {}
   },
   "projects": {
-    "c:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\WebScrapping-C.csproj": {
+    "C:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\WebScrapping-C.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\WebScrapping-C.csproj",
+        "projectUniqueName": "C:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\WebScrapping-C.csproj",
         "projectName": "WebScrapping-C",
-        "projectPath": "c:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\WebScrapping-C.csproj",
+        "projectPath": "C:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\WebScrapping-C.csproj",
         "packagesPath": "C:\\Users\\josue\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\obj\\",
+        "outputPath": "C:\\Users\\josue\\Documents\\desafio-tecnico\\WebScrapping-C\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\josue\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\josue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +35,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -42,9 +50,23 @@
               "target": "Package",
               "version": "[1.11.61, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.31, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.29, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.Diagnostics.Tools": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [
@@ -66,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.423\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
