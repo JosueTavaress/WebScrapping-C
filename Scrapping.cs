@@ -1,5 +1,7 @@
 ﻿using System.Web;
 using HtmlAgilityPack;
+using WebScrapping_C.Model;
+using WebScrapping_C.Repository;
 
 enum EnumProperties
 {
@@ -18,6 +20,12 @@ namespace WebScrapping_C
 {
     public class Scrapping
     {
+        private readonly IFoodsRepository repository;
+
+        public Scrapping(IFoodsRepository repository)
+        {
+            this.repository = repository;
+        }
 
         private async Task<HtmlDocument> LoadHtmlDocumentAsync(string page, string url, string query)
         {
@@ -80,6 +88,12 @@ namespace WebScrapping_C
                     DataType = HtmlDecoded(td[DataTypeIndx].InnerText)
                 };
                 item.Details.Add(properties);
+            }
+            await this.repository.CreateItemAsync(item);
+            bool result = await this.repository.SaveChangesAsync();
+            if (!result)
+            {
+                throw new Exception("Failed to save.");
             }
 
             return item;
