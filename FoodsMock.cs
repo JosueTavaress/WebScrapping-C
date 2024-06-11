@@ -1,6 +1,6 @@
 namespace WebScrapping_C;
 
-public class WeatherForecast
+public class FoodsMock
 {
     public DateTime Date { get; set; }
 
