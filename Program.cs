@@ -1,18 +1,27 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using WebScrapping_C.Core.Services;
 using WebScrapping_C.Data;
 using WebScrapping_C.Repository;
-using WebScrapping_C.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllers()
+  .AddJsonOptions(options =>
+  {
+      options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+      options.JsonSerializerOptions.MaxDepth = 64;
+  });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<FoodsContex>(options => {
+builder.Services.AddDbContext<FoodsContex>(options =>
+{
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
@@ -25,6 +34,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();

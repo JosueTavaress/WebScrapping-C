@@ -39,10 +39,10 @@ namespace WebScrapping_C.Data
             properties.Property(i => i.StandardDeviation).IsRequired(false).HasColumnName("standard_daviation");
             properties.Property(i => i.References).IsRequired(false).HasColumnName("references");
 
-            properties.HasOne(p => p.Item)
-                      .WithMany(i => i.Details)
-                      .HasForeignKey(p => p.ItemId);
-
+            modelBuilder.Entity<Item>()
+                .HasMany(i => i.Details)
+                .WithOne(p => p.Item)
+                .HasForeignKey(p => p.ItemId);
         }
     }
 }
