@@ -16,7 +16,6 @@ builder.Services.AddControllers()
   });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -43,7 +42,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-
+// processes data scraping in parallel
 var scrapingTask = Task.Run(async () =>
 {
     var contextOptions = new DbContextOptionsBuilder<FoodsContex>()

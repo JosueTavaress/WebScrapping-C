@@ -18,9 +18,9 @@ namespace WebScrapping_C.Repository
             await this.context.AddAsync(item);
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync()
+        public async Task<bool> HasItemsAsync()
         {
-            return await this.context.Items.ToListAsync();
+            return await this.context.Items.AnyAsync();
         }
 
         public async Task<bool> SaveChangesAsync()

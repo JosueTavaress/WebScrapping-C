@@ -96,8 +96,12 @@ namespace WebScrapping_C.Core.Services
             int page = 1;
             List<Item> items = new List<Item>();
 
+            var verifyScrappin = await this.repository.HasItemsAsync();
+            if (verifyScrappin) return;
+
             while (true)
             {
+
                 const string BaseUrl = "https://www.tbca.net.br/base-dados/composicao_estatistica.php";
                 const string query = "?pagina={0}&atuald=1";
                 const string tag = "//table/tbody/tr";

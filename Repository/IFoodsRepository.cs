@@ -4,9 +4,8 @@ namespace WebScrapping_C.Repository
 {
     public interface IFoodsRepository
     {
-        Task<IEnumerable<Item>> GetItemsAsync();
+        Task<bool> HasItemsAsync();
         Task CreateItemAsync(Item item);
         Task<bool> SaveChangesAsync();
     }
 }
-
