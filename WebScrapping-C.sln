@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScrapping-C", "WebScrapping-C.csproj", "{65711452-24BF-4C21-9AB6-85CCBAEA4B15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "..\desafio-tecnico.domain\Domain.csproj", "{02A01C1E-915D-4939-8FBE-1DB8BC4D0796}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{65711452-24BF-4C21-9AB6-85CCBAEA4B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65711452-24BF-4C21-9AB6-85CCBAEA4B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65711452-24BF-4C21-9AB6-85CCBAEA4B15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02A01C1E-915D-4939-8FBE-1DB8BC4D0796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02A01C1E-915D-4939-8FBE-1DB8BC4D0796}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02A01C1E-915D-4939-8FBE-1DB8BC4D0796}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02A01C1E-915D-4939-8FBE-1DB8BC4D0796}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using WebScrapping_C;
 using WebScrapping_C.Data;
 using WebScrapping_C.Repository;
+using WebScrapping_C.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +41,9 @@ var scrapingTask = Task.Run(async () =>
                             .Options;
     var context = new FoodsContex(contextOptions);
     var repository = new FoodsRepository(context);
-    var scrapping = new Scrapping(repository);
+    var htmlScraping = new HtmInteractions();
+
+    var scrapping = new Scrapping(repository, htmlScraping);
     await scrapping.ExecuteAsync();
 });
 
