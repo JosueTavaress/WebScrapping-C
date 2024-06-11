@@ -4,6 +4,8 @@ dotnet ef migrations add <migration-name> => gera as migrations
 
 dotnet ef database update => roda as migrations no banco de dados
 
+dotnet watch run
+
 Dependencias instaladas no projeto:
 
 htmlagilitypack-1.11.61:
