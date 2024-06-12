@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getDetailsFood } from '../../api/http-foods/request';
 import { useParams } from 'react-router-dom';
-import { ChakraProvider, Box, Table, Thead, Tbody, Tr, Th, Td, Container } from '@chakra-ui/react';
+import { ChakraProvider, Box, Table, Thead, Tbody, Tr, Th, Td, Container, Flex, Spinner } from '@chakra-ui/react';
 import { IResponseDetails } from '../../api/http-foods/interface';
 
 const Details = () => {
@@ -22,7 +22,13 @@ const Details = () => {
     }
   }, [id]);
 
-  if (loading) return <p>Loading...</p>; // wip refactor component
+  if (loading) {
+    return (
+      <Flex marginTop="20%" alignItems="center" justifyContent="center">
+        <Spinner size="xl" />
+     </Flex>
+    )
+  }
 
   return (
       <ChakraProvider>
