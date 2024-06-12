@@ -1,4 +1,4 @@
-import CRoutes from "../routes";
+import CRoutes from "./routes";
 import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {

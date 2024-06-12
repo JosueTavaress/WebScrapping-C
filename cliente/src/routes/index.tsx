@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Details, Home } from '../pages/index'
+import { Details, Home } from '../pages/index';
 const CRoutes = () => {
     return (
         <>
