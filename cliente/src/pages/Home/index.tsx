@@ -67,23 +67,22 @@ const Home = () => {
     setLoading(false);
   }
 
-  const fetchData = async (pageNumber = 1) => {
-    setLoading(true);
-    let data;
-    if (isSearching) {
-      data = await FilterFoods(searchQuery, pageNumber.toString());
-    } else {
-      data = await getFoods(pageNumber, take);
-    }
-    setDataItems(data);
-    setLoading(false);
-  }
-
   const handleRowClick = (code: string) => {
     navigator(`/Details/${code}`);
   }
 
   useEffect(() => {
+    const fetchData = async (pageNumber = 1) => {
+      setLoading(true);
+      let data;
+      if (isSearching) {
+        data = await FilterFoods(searchQuery, pageNumber.toString());
+      } else {
+        data = await getFoods(pageNumber, take);
+      }
+      setDataItems(data);
+      setLoading(false);
+    }
     fetchData(page);
   }, [page, isSearching]);
 
@@ -92,13 +91,13 @@ const Home = () => {
       <Box width={{ base: "100%", md: "80%", lg: "60%" }}>
         <Flex mb={4} alignItems="center" justify="center">
           <HStack spacing={2} width="100%">
-            <Input 
+            <Input
               placeholder="Search for food..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               size="sm"
             />
-            <IconButton 
+            <IconButton
               icon={<SearchIcon />} 
               onClick={handleSearch} 
               aria-label="Search"
