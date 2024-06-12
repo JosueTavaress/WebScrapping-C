@@ -44,4 +44,5 @@ C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\Npgsql.
 C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\cliente\package-lock.json
 C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\cliente\package.json
-C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\cliente\public\manifest.json
+C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\cliente\tsconfig.json
+C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\cliente\tsconfig.node.json
