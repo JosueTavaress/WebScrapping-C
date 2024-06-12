@@ -18,11 +18,11 @@ import {
   Spacer
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowLeftIcon, ArrowRightIcon, CloseIcon } from '@chakra-ui/icons';
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 import { IResponseFoods } from '../../api/http-foods/interface';
 
 const Home = () => {
-  const take = 25;
+  const take = 100;
   const [page, setPage] = useState(1);
   const [dataItems, setDataItems] = useState<IResponseFoods[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,12 +32,12 @@ const Home = () => {
   const navigator = useNavigate();
 
   const handlerNextPage = () => {
-    setPage((prev) => prev + 1);
+    setPage((prev) => prev + 100);
   }
 
   const handlerPreviousPage = () => {
-    if (page > 1) {
-      setPage((prev) => prev - 1);
+    if (page > 25) {
+      setPage((prev) => prev - 100);
     } else {
       toast({
         title: "You are already on the first page.",
@@ -131,7 +131,8 @@ const Home = () => {
               </Thead>
               <Tbody>
                 {dataItems.map((item, index) => (
-                  <Tr 
+                  <Tr
+                    height="53" 
                     key={index} 
                     onClick={() => handleRowClick(item.code)}
                     cursor="pointer"
@@ -160,6 +161,7 @@ const Home = () => {
                 rightIcon={<ArrowRightIcon />} 
                 onClick={handlerNextPage}
                 colorScheme="blue"
+                isDisabled={dataItems.length === 0}
               >
                 Next
               </Button>
