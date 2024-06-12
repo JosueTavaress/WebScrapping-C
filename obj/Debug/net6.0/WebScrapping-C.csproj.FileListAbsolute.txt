@@ -42,3 +42,6 @@ C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\Microso
 C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\Npgsql.dll
 C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\cliente\package-lock.json
+C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\cliente\package.json
+C:\Users\josue\Documents\desafio-tecnico\WebScrapping-C\bin\Debug\net6.0\cliente\public\manifest.json
