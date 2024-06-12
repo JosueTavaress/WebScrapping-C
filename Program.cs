@@ -11,13 +11,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
   .AddJsonOptions(options =>
   {
-      options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+      options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
       options.JsonSerializerOptions.MaxDepth = 64;
   });
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddDbContext<FoodsContex>(options =>
 {
@@ -37,6 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 
