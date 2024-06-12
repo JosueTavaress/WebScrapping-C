@@ -16,13 +16,29 @@ public class FoodsController : ControllerBase
     {
         var items = await contex
             .Items
-            .Include(i => i.Details)
             .AsNoTracking()
             .Skip(skip)
             .Take(take)
             .ToListAsync();
 
         return Ok(items);
+    }
+
+    [HttpGet("details/{code}")]
+    public async Task<IActionResult> FilterByName(
+        [FromServices] FoodsContex context,
+        [FromRoute] string code)
+    {
+        var details = await context.Details
+            .Where(d => d.Item.Code == code)
+            .ToListAsync();
+
+        if (details == null || !details.Any())
+        {
+            return NotFound();
+        }
+
+        return Ok(details);
     }
 
     [HttpGet("filter", Name = "FilterFoodsByName")]

@@ -5,11 +5,15 @@ namespace WebScrapping_C.Data
 {
     public class FoodsContex : DbContext
     {
-        public FoodsContex(DbContextOptions<FoodsContex> options) : base(options)
-        {
-        }
 
         public DbSet<Item> Items { get; set; }
+        public DbSet<Properties> Details { get; set; }
+
+        public FoodsContex(DbContextOptions<FoodsContex> options) : base(options)
+        {
+            Items = Set<Item>();
+            Details = Set<Properties>();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
