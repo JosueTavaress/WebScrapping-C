@@ -1,4 +1,4 @@
-import IResponseFoods from "./interface";
+import { IResponseDetails, IResponseFoods } from "./interface";
 import request  from '../http-config';
 
 
@@ -24,7 +24,16 @@ const FilterFoods = async (input: string, skip: string, take: string = "25") => 
   return response.data;
 }
 
+const getDetailsFood = async (code: string): Promise<IResponseDetails[]> => {
+  const response = await request({
+    method: "GET",
+    url: `Foods/details/${code}`,
+  });
+  return response.data;
+}
+
 export {
   getFoods,
-  FilterFoods
+  FilterFoods,
+  getDetailsFood
 }
