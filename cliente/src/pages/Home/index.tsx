@@ -114,7 +114,7 @@ const Home = () => {
           </HStack>
         </Flex>
         {loading ? (
-          <Flex justifyContent="center">
+          <Flex marginTop="25%" justifyContent="center">
             <Spinner size="xl" />
           </Flex>
         ) : (
