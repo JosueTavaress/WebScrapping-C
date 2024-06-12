@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowLeftIcon, ArrowRightIcon, CloseIcon } from '@chakra-ui/icons';
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-import IResponseFoods from '../../api/http-foods/interface';
+import { IResponseFoods } from '../../api/http-foods/interface';
 
 const Home = () => {
   const take = 25;

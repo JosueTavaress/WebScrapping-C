@@ -1,4 +1,4 @@
-interface IResponseFoods {
+export interface IResponseFoods {
       id: number,
       code: string,
       name: string,
@@ -7,4 +7,15 @@ interface IResponseFoods {
       brand: string,
 }[]
 
-export default IResponseFoods;
+ export interface IResponseDetails {
+      id: number,
+      component: string,
+      units: string,
+      valuePer100G: string,
+      dataType: string,
+      minimumValue: string,
+      maximumValue: string,
+      numberOfDataUsed: string,
+      standardDeviation: string,
+      references: string,
+}
