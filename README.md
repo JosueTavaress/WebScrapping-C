@@ -10,6 +10,18 @@
 - Interface de usuário para consumir dados salvos no banco
 - Pesquisa por dados salvos
 
+---
+
+<details open>
+<summary>Pagina Demo</summary>
+<br>
+Ligh mode
+<br><br>
+<img src="./cliente/src/assets/image.png"></img>
+</details>
+
+---
+
 ## Pré-requisitos
 
 - **Postgress** Necessário uma instancia do servidor rodando localmente para armazenamento de dados.
