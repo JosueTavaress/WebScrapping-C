@@ -93,7 +93,7 @@ const Home = () => {
         <Flex mb={4} alignItems="center" justify="center">
           <HStack spacing={2} width="100%">
             <Input
-              placeholder="Search for food..."
+              placeholder="Pesquisar..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               size="sm"
