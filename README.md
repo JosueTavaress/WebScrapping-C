@@ -18,7 +18,7 @@
 <br>
 Ligh mode
 <br><br>
-<img src="./cliente/src/assets/image-home.png"></img>
+<img src="./frontend/src/assets/image-home.png"></img>
 </details>
 
 ---
@@ -29,7 +29,7 @@ Ligh mode
 <br>
 Ligh mode
 <br><br>
-<img src="./cliente/src/assets/image-details.png"></img>
+<img src="./frontend/src/assets/image-details.png"></img>
 </details>
 
 ---
