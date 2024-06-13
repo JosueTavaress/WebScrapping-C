@@ -14,17 +14,29 @@
 ---
 
 <details open>
-<summary>Pagina Demo</summary>
+<summary>Pagina Home</summary>
 <br>
 Ligh mode
 <br><br>
-<img src="./cliente/src/assets/image.png"></img>
+<img src="./cliente/src/assets/image-home.png"></img>
+</details>
+
+---
+
+
+<details>
+<summary>Pagina Details</summary>
+<br>
+Ligh mode
+<br><br>
+<img src="./cliente/src/assets/image-details.png"></img>
 </details>
 
 ---
 
 ## Pré-requisitos
 
+- **.NET 6** Necessuário instalar o .NET 6, para seguir a instalação seguir [documentação](https://dotnet.microsoft.com/pt-br/download/dotnet/6.0)
 - **Postgress** Necessário uma instancia do servidor rodando localmente para armazenamento de dados.
 - **Node** Necessário node v20.11.1 Para seguir a instalação seguir [documentação](https://nodejs.org/en)
 
