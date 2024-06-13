@@ -50,7 +50,7 @@ clone o repositorio com git clone <ssh|https>
 `\
 Entre no repositorio\
 `
-cd WebScrapping-C
+cd backend
 `
 
 ### Passos para Inicialização
@@ -87,7 +87,7 @@ $ dotnet run
 
 Entre em\
 `
-cd WebScrapping-C/cliente
+cd frontend
 `
 
 1. Execute o comando para instalar as dependências:
