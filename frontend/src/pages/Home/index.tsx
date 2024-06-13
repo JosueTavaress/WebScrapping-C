@@ -49,6 +49,7 @@ const Home = () => {
   }
 
   const handleSearch = async () => {
+    if (!searchQuery.trim()) return;
     setLoading(true);
     setIsSearching(true);
     const data = await FilterFoods(searchQuery, "1");
@@ -154,7 +155,7 @@ const Home = () => {
                 isDisabled={page === 1}
                 colorScheme="blue"
               >
-                Previous
+                Anterior
               </Button>
               <Spacer />
               <Button 
@@ -163,7 +164,7 @@ const Home = () => {
                 colorScheme="blue"
                 isDisabled={dataItems.length === 0}
               >
-                Next
+                Próximo
               </Button>
             </Flex>
           </Box>
