@@ -9,6 +9,7 @@
 - Armazena dados em banco de dados
 - Interface de usuário para consumir dados salvos no banco
 - Pesquisa por dados salvos
+- Pagina de detalhes 
 
 ---
 
