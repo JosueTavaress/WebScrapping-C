@@ -1,9 +1,18 @@
 # Web Scrapping com C# .NET
+## Índice
+#### Ordem de execusão
+
+- [Introdução](#intro)
+- [pré-requisitos](#req)
+- [Start DB](#db)
+- [Start Application Back end](#back)
+- [Start Application Front end](#front)
+- [Comandos Adicionais API](#command)
 
 ### Scraping realizado no site
 - `https://www.tbca.net.br/base-dados/composicao_estatistica.php`
 
-## Funcionalidades
+### <a name="intro"></a>Funcionalidades
 
 - Script de raspagem de dados
 - Armazena dados em banco de dados
@@ -34,7 +43,7 @@ Ligh mode
 
 ---
 
-## Pré-requisitos
+### <a name="req"></a>Pré-requisitos
 
 - **.NET 6** Necessuário instalar o .NET 6, para seguir a instalação seguir [documentação](https://dotnet.microsoft.com/pt-br/download/dotnet/6.0)
 - **Postgress** Necessário uma instancia do servidor rodando localmente para armazenamento de dados.
@@ -43,13 +52,32 @@ Ligh mode
 - **Opcional**:
   - Caso opte em não rodar o banco localmente necessario o docker instalado para subir um container docker configurado.
 
-## Start Application Back end
+### <a name="back"></a>Start Application Back end
 
 
 Clone o repositorio com:
  ```sh
  git clone <ssh|https>
  ```
+
+ ### <a name="db"></a>Tatabase
+1. Certifique se que o banco de dados `postgres` esteja rodando localmente na porta `5432` e configurado com a senha de dev `123456` e usuário `postgres` . Obs: Caso opte poderar subir um container configurado no projeto com o comando:
+
+```sh
+ $ docker compose up -d
+```
+
+2. Compile o projeto com:
+
+```sh
+$ dotnet build
+```
+
+3. Rode o back end com:
+
+```sh
+$ dotnet run
+```
 
 Entre no projeto backand:
 
@@ -69,25 +97,7 @@ cd WebScrapping-C/backend
  $ dotnet ef database update
 ```
 
-3. Certifique se que o banco de dados `postgres` esteja rodando localmente na porta `5432` e configurado com a senha de dev `123456` e usuário `postgres` . Obs: Caso opte poderar subir um container configurado no projeto com o comando:
-
-```sh
- $ docker compose up -d
-```
-
-4. Compile o projeto com:
-
-```sh
-$ dotnet build
-```
-
-5. Rode o back end com:
-
-```sh
-$ dotnet run
-```
-
-## Start Application Front end
+### <a name="front"></a> Start Application Front end
 
 Entre no projeto frontend:
 ```sh
@@ -105,13 +115,13 @@ cd WebScrapping-C/backend
 ```
 
 
-2. Acesse a aplicação nos seguintes endereços:
+3. Acesse a aplicação nos seguintes endereços:
    - **Frontend:** [http://localhost:3000](http://localhost:3000)
    - **Backend Api** [http://localhost:7289](http://localhost:7289)
    - **Api Doc** [https://localhost:7289/swagger/index.html](https://localhost:7289/swagger/index.html)
 
 
-  ### Comandos Adicionais API
+### <a name="command"></a> Comandos Adicionais API
 
 - **Subir uma nova migration**
 
