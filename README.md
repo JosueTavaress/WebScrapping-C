@@ -45,13 +45,17 @@ Ligh mode
 
 ## Start Application Back end
 
-`
-clone o repositorio com git clone <ssh|https>
-`\
-Entre no repositorio\
-`
-cd backend
-`
+
+Clone o repositorio com:
+ ```sh
+ git clone <ssh|https>
+ ```
+
+Entre no projeto backand:
+
+```sh
+cd WebScrapping-C/backend
+```
 
 ### Passos para Inicialização
 1. Execute o comando para restaurar as dependências:
@@ -85,10 +89,10 @@ $ dotnet run
 
 ## Start Application Front end
 
-Entre em\
-`
-cd frontend
-`
+Entre no projeto frontend:
+```sh
+cd WebScrapping-C/backend
+```
 
 1. Execute o comando para instalar as dependências:
 ```sh
