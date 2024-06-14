@@ -67,18 +67,6 @@ Clone o repositorio com:
  $ docker compose up -d
 ```
 
-2. Compile o projeto com:
-
-```sh
-$ dotnet build
-```
-
-3. Rode o back end com:
-
-```sh
-$ dotnet run
-```
-
 Entre no projeto backand:
 
 ```sh
@@ -97,11 +85,23 @@ cd WebScrapping-C/backend
  $ dotnet ef database update
 ```
 
+3. Compile o projeto com:
+
+```sh
+$ dotnet build
+```
+
+4. Rode o back end com:
+
+```sh
+$ dotnet run
+```
+
 ### <a name="front"></a> Start Application Front end
 
 Entre no projeto frontend:
 ```sh
-cd WebScrapping-C/backend
+cd WebScrapping-C/frontend
 ```
 
 1. Execute o comando para instalar as dependências:
